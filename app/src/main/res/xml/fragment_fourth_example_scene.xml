@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@id/fsecond"
+        motion:constraintSetStart="@id/fstart"
+        motion:duration="700">
+        <OnClick
+            motion:targetId="@id/fab_testfab"/>
+    </Transition>
+
+    <Transition
+        motion:constraintSetEnd="@id/fthird"
+        motion:constraintSetStart="@id/fsecond"
+        motion:duration="700">
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@id/fthird"
+        motion:constraintSetEnd="@id/ffourth"
+        motion:duration="700">
+    </Transition>
+
+    <ConstraintSet android:id="@+id/fstart">
+
+        <Constraint android:id="@+id/v_bottombar">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                motion:layout_constraintBottom_toBottomOf="parent" />
+        </Constraint>
+
+        <Constraint android:id="@+id/fab_testfab">
+            <Layout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                motion:layout_constraintBottom_toTopOf="@id/v_bottombar"
+                motion:layout_constraintEnd_toEndOf="@id/v_bottombar"
+                motion:layout_constraintStart_toStartOf="@id/v_bottombar"
+                motion:layout_constraintTop_toTopOf="@id/v_bottombar" />
+        </Constraint>
+
+        <Constraint android:id="@+id/v_panel">
+
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                motion:layout_constraintTop_toTopOf="@id/v_bottombar" />
+            <PropertySet android:visibility="invisible" />
+        </Constraint>
+
+        <Constraint android:id="@+id/tv_test">
+            <Layout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                motion:layout_constraintBottom_toBottomOf="@id/v_bottombar"
+                motion:layout_constraintEnd_toEndOf="@id/v_bottombar"
+                motion:layout_constraintStart_toStartOf="@id/v_bottombar"
+                motion:layout_constraintTop_toBottomOf="@id/v_panel" />
+
+            <PropertySet android:visibility="invisible" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/fsecond"
+        motion:deriveConstraintsFrom="@id/fstart">
+
+        <Constraint android:id="@id/v_bottombar">
+
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintTop_toTopOf="@id/guideline" />
+        </Constraint>
+
+        <Constraint android:id="@+id/v_panel">
+
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                motion:layout_constraintTop_toTopOf="@id/v_bottombar" />
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+
+        <Constraint android:id="@+id/fab_testfab">
+            <Layout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                motion:layout_constraintBottom_toTopOf="@id/v_bottombar"
+                motion:layout_constraintEnd_toEndOf="@id/v_bottombar"
+                motion:layout_constraintStart_toStartOf="@id/v_bottombar"
+                motion:layout_constraintTop_toTopOf="@id/v_bottombar" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/fthird"
+        motion:deriveConstraintsFrom="@id/fsecond">
+
+        <Constraint android:id="@id/fab_testfab">
+
+            <Transform android:rotation="500" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/ffourth"
+        motion:deriveConstraintsFrom="@id/fsecond">
+
+        <Constraint android:id="@+id/tv_test">
+
+            <Layout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                motion:layout_constraintBottom_toBottomOf="@id/v_bottombar"
+                motion:layout_constraintEnd_toEndOf="@id/v_bottombar"
+                motion:layout_constraintStart_toStartOf="@id/v_bottombar"
+                motion:layout_constraintTop_toBottomOf="@id/v_panel" />
+
+            <Transform android:elevation="2dp" />
+
+            <PropertySet android:visibility="visible" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>
