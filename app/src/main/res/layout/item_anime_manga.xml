@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/item_anime_manga_image"
+            android:id="@+id/iv_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -32,7 +32,7 @@
             android:paddingBottom="12dp">
 
             <TextView
-                android:id="@+id/item_anime_manga_title"
+                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -42,7 +42,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/item_anime_manga_episodes_chapters"
+                android:id="@+id/tv_episodes_chapters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

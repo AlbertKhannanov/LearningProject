@@ -2,6 +2,8 @@ package ru.skillbranch.learningproject.model
 
 import CurrentMediaQuery.Media
 import GetListQuery.Medium
+import android.graphics.BitmapFactory
+import java.net.URL
 
 fun Media.mapToMovie(): Movie =
     Movie(
@@ -30,5 +32,5 @@ fun Medium.mapToMovie(): Movie =
         volumes,
         coverImage?.extraLarge,
         bannerImage,
-        siteUrl
+        siteUrl,
     )

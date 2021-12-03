@@ -4,6 +4,7 @@ import CurrentMediaQuery
 import GetListQuery
 import android.util.Log
 import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.coroutines.await
 import com.apollographql.apollo.coroutines.toDeferred
 import com.apollographql.apollo.coroutines.toFlow
@@ -19,22 +20,15 @@ class AnilistApiImpl(
     private val client: ApolloClient
 ) : AnilistApi {
 
-    @ExperimentalCoroutinesApi
-    override fun getMovie(id: Int): Flow<Movie> = client.query(CurrentMediaQuery(id))
-            .toFlow()
-            .map {
-                it.data?.media?.mapToMovie() ?: Movie()
-            }
-            .flowOn(Dispatchers.IO)
+    override suspend fun getMovie(id: Int): Response<CurrentMediaQuery.Data> =
+        client.query(CurrentMediaQuery(id))
+            .await()
 
-    @ExperimentalCoroutinesApi
-    override fun getMovies(type: MediaType, pageNumber: Int): Flow<List<Movie>> =
-        client.query(GetListQuery(type, COUNT_ON_PAGE, pageNumber))
-            .toFlow()
-            .map {
-                it.data?.page?.media?.map { movieResponse ->
-                    movieResponse?.mapToMovie() ?: Movie()
-                } ?: emptyList()
-            }
-            .flowOn(Dispatchers.IO)
+    override suspend fun getMovies(
+        type: MediaType,
+        pageNumber: Int,
+        pageSize: Int
+    ): Response<GetListQuery.Data> =
+        client.query(GetListQuery(type, pageSize, pageNumber))
+            .await()
 }
