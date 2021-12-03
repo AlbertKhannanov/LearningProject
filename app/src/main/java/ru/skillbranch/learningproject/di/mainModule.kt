@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
 val mainModule = module {
 
     viewModel {
-        MainFViewModel(get(), get())
+        MainFViewModel(get())
     }
 
     single<MainUseCase> {
