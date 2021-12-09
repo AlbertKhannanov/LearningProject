@@ -6,6 +6,8 @@
         <entry key="..\:/Projects/Android/LearningProject/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
         <entry key="..\:/Projects/Android/LearningProject/app/src/main/res/layout/fragment_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Projects/Android/LearningProject/app/src/main/res/layout/item_anime_manga.xml" value="0.11145833333333334" />
+        <entry key="..\:/Projects/Android/LearningProject/app/src/main/res/layout/item_error.xml" value="0.128125" />
+        <entry key="..\:/Projects/Android/LearningProject/app/src/main/res/layout/item_progress.xml" value="0.128125" />
       </map>
     </option>
   </component>

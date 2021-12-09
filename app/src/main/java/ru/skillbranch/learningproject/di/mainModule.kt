@@ -8,6 +8,7 @@ import ru.skillbranch.learningproject.data.api.AnilistApi
 import ru.skillbranch.learningproject.data.api.AnilistApiImpl
 import ru.skillbranch.learningproject.data.repository.MainRepository
 import ru.skillbranch.learningproject.data.repository.MainRepositoryImpl
+import ru.skillbranch.learningproject.data.repository.MoviesPagingSource
 import ru.skillbranch.learningproject.domain.MainUseCase
 import ru.skillbranch.learningproject.domain.MainUseCaseImpl
 import ru.skillbranch.learningproject.presentation.fragment.MainFViewModel
@@ -42,5 +43,9 @@ val mainModule = module {
         OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .build()
+    }
+
+    factory<MoviesPagingSource> {
+        MoviesPagingSource(get())
     }
 }

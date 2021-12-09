@@ -8,15 +8,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 import ru.skillbranch.learningproject.databinding.FragmentMainBinding
+import ru.skillbranch.learningproject.presentation.adapter.AnimeMangaAdapter
+import ru.skillbranch.learningproject.presentation.adapter.MoviesLoaderStateAdapter
 
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
 
     private val viewModel: MainFViewModel by inject()
+
+    private val adapter: AnimeMangaAdapter by lazy(LazyThreadSafetyMode.NONE) {
+        AnimeMangaAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,28 +37,16 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.rv.adapter = adapter.withLoadStateHeaderAndFooter(
+            MoviesLoaderStateAdapter(),
+            MoviesLoaderStateAdapter(),
+        )
         lifecycleScope.launchWhenStarted {
-            viewModel.uiState
-                .onEach {
-                    when(it) {
-                        MainUiState.Init -> {
-                            Log.i("asdfasdf", "init")
-                        }
-                        MainUiState.Loading -> {
-                            Log.i("asdfasdf", "loading")
-                        }
-                        MainUiState.Error -> {
-                            Log.i("asdfasdf", "error")
-                        }
-                        is MainUiState.MoviesLoaded -> {
-                            Log.i("asdfasdf", "${it.movies}")
-                        }
-                    }
+            viewModel.movies
+                .collectLatest {
+                    adapter.submitData(it)
                 }
-                .collect()
         }
-
-        viewModel.getMovies()
     }
 
     companion object {

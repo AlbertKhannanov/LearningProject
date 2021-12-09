@@ -1,17 +1,20 @@
 package ru.skillbranch.learningproject.model
 
+import android.graphics.Bitmap
 import type.MediaType
 
 data class Movie(
-    private val id: Int? = null,
-    private val type: MediaType? = null,
-    private val title: String? = null,
-    private val description: String? = null,
-    private val episodes: Int? = null,
-    private val duration: Int? = null,
-    private val chapters: Int? = null,
-    private val volumes: Int? = null,
-    private val coverImage: String? = null,
-    private val bannerImage: String? = null,
-    private val siteUrl: String? = null
+    val id: Int? = null,
+    val type: MediaType? = null,
+    val title: String? = null,
+    val description: String? = null,
+    val episodes: Int? = null,
+    val duration: Int? = null,
+    val chapters: Int? = null,
+    val volumes: Int? = null,
+    val coverImage: String? = null,
+    val bannerImage: String? = null,
+    val siteUrl: String? = null,
+
+    var coverImageBitmap: Bitmap? = null
 )

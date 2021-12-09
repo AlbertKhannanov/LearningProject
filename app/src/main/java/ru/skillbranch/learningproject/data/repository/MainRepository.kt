@@ -1,11 +1,11 @@
 package ru.skillbranch.learningproject.data.repository
 
-import kotlinx.coroutines.flow.Flow
 import ru.skillbranch.learningproject.model.Movie
+import ru.skillbranch.learningproject.utils.COUNT_ON_PAGE
 import type.MediaType
 
 interface MainRepository {
 
-    fun getMovie(id: Int): Flow<Movie>
-    fun getMovies(type: MediaType, pageNumber: Int): Flow<List<Movie>>
+    suspend fun getMovie(id: Int): Movie
+    suspend fun getMovies(type: MediaType, pageNumber: Int, pageSize: Int = COUNT_ON_PAGE): List<Movie>
 }
